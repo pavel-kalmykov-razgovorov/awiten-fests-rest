@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Festival;
 use App\Http\Resources\FestivalResource;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -30,7 +31,7 @@ class FestivalController extends Controller
         // Metemos en la petición nuevos datos a calzador que generamos nosotros mismos de forma automática
         $request->merge([
             'permalink' => kebab_case($request['name']),
-            'promoter_id' => 2 // FIXME Obtener desde el Auth el ID del promotor
+            'promoter_id' => User::whereRole('promoter')->first()->id // FIXME Obtener desde el Auth el ID del promotor
         ]);
 
         $validatedData = $request->validate([
