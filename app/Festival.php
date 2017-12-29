@@ -12,4 +12,9 @@ class Festival extends Model
     {
         return $this->permalink;
     }
+
+    public function promoter()
+    {
+        return $this->belongsTo('App\User', 'promoter_id');
+    }
 }
