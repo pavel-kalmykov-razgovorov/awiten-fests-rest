@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResources([
     'festivals' => 'FestivalController',
-    'artists' => 'ArtistController'
+    'artists' => 'ArtistController',
+    'genres' => 'GenreController'
 ]);

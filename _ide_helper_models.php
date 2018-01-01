@@ -23,6 +23,7 @@ namespace App {
      * @property string|null $pathProfile
      * @property string|null $pathHeader
      * @property int $manager_id
+     * @property-read \App\User $manager
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCountry($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereId($value)
@@ -42,6 +43,26 @@ namespace App {
 
 namespace App {
     /**
+     * App\Genre
+     *
+     * @property int $id
+     * @property string $permalink
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @property string $name
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre wherePermalink($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereUpdatedAt($value)
+     */
+    class Genre extends \Eloquent
+    {
+    }
+}
+
+namespace App {
+    /**
      * App\Festival
      *
      * @property int $id
@@ -55,6 +76,7 @@ namespace App {
      * @property string|null $pathLogo
      * @property string|null $pathCartel
      * @property int $promoter_id
+     * @property-read \App\User $promoter
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Festival whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Festival whereDate($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Festival whereId($value)
