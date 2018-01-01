@@ -80,7 +80,7 @@ class FestivalController extends Controller
             'location' => 'nullable|string',
         ]);
         $festival->update($validatedData);
-        return response(FestivalResource::make($festival), Response::HTTP_CREATED);
+        return FestivalResource::make($festival)->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**

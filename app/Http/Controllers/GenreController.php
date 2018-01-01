@@ -72,7 +72,7 @@ class GenreController extends Controller
             'permalink' => "required$uniqueSearch|max:255",
         ]);
         $genre->update($validatedData);
-        return GenreResource::make($genre);
+        return GenreResource::make($genre)->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**

@@ -81,7 +81,7 @@ class ArtistController extends Controller
             'website' => 'nullable|string',
         ]);
         $artist->update($validatedData);
-        return response(ArtistResource::make($artist), Response::HTTP_CREATED);
+        return ArtistResource::make($artist)->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**
