@@ -22,3 +22,20 @@ Route::apiResources([
     'artists' => 'ArtistController',
     'genres' => 'GenreController'
 ]);
+
+// Nested resources => only list and details
+Route::resource('artists.festivals', 'ArtistFestivalsController', ['only' => [
+    'index', 'show'
+]]);
+
+Route::resource('festivals.artists', 'FestivalArtistsController', ['only' => [
+    'index', 'show'
+]]);
+
+Route::resource('genres.festivals', 'GenreFestivalsController', ['only' => [
+    'index', 'show'
+]]);
+
+Route::resource('genres.artists', 'GenreArtistsController', ['only' => [
+    'index', 'show'
+]]);
