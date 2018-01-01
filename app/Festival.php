@@ -22,4 +22,9 @@ class Festival extends Model
     {
         return $this->belongsToMany('App\Artist')->withPivot('confirmed');
     }
+
+    public function genres()
+    {
+        return $this->belongsToMany('App\Genre');
+    }
 }

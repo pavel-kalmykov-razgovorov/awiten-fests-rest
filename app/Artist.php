@@ -22,4 +22,9 @@ class Artist extends Model
     {
         return $this->belongsToMany('App\Festival')->withPivot('confirmed');
     }
+
+    public function genres()
+    {
+        return $this->belongsToMany('App\Genre');
+    }
 }

@@ -17,6 +17,8 @@ class GenreResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'artists' => ArtistResource::collection($this->whenLoaded('artists')),
+            'festivals' => FestivalResource::collection($this->whenLoaded('festivals')),
         ];
     }
 }

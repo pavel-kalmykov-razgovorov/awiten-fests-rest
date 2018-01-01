@@ -47,7 +47,7 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        return GenreResource::make($genre);
+        return GenreResource::make($genre->load(['artists', 'festivals']));
     }
 
     /**

@@ -24,6 +24,7 @@ namespace App {
      * @property string|null $pathHeader
      * @property int $manager_id
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Festival[] $festivals
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Genre[] $genres
      * @property-read \App\User $manager
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCountry($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCreatedAt($value)
@@ -51,6 +52,8 @@ namespace App {
      * @property \Carbon\Carbon|null $created_at
      * @property \Carbon\Carbon|null $updated_at
      * @property string $name
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Artist[] $artists
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Festival[] $festivals
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereName($value)
@@ -78,6 +81,7 @@ namespace App {
      * @property string|null $pathCartel
      * @property int $promoter_id
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Artist[] $artists
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Genre[] $genres
      * @property-read \App\User $promoter
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Festival whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Festival whereDate($value)
