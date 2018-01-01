@@ -20,6 +20,7 @@ class FestivalResource extends Resource
             'date' => $this->date,
             'province' => $this->province,
             'location' => $this->location,
+            'artists' => ArtistResource::collection($this->whenLoaded('artists')),
         ];
     }
 }

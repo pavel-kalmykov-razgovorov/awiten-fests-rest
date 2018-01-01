@@ -20,6 +20,7 @@ class ArtistResource extends Resource
             'country' => $this->country,
             'soundcloud' => $this->soundcloud,
             'website' => $this->website,
+            'festivals' => FestivalResource::collection($this->whenLoaded('festivals')),
         ];
     }
 }

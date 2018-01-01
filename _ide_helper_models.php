@@ -23,6 +23,7 @@ namespace App {
      * @property string|null $pathProfile
      * @property string|null $pathHeader
      * @property int $manager_id
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Festival[] $festivals
      * @property-read \App\User $manager
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCountry($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCreatedAt($value)
@@ -76,6 +77,7 @@ namespace App {
      * @property string|null $pathLogo
      * @property string|null $pathCartel
      * @property int $promoter_id
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Artist[] $artists
      * @property-read \App\User $promoter
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Festival whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Festival whereDate($value)

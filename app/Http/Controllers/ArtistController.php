@@ -54,7 +54,8 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        return ArtistResource::make($artist);
+        // Usamos el load para forzar el eager loading de los festivales
+        return ArtistResource::make($artist->load('festivals'));
     }
 
     /**

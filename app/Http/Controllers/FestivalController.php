@@ -53,7 +53,8 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival)
     {
-        return FestivalResource::make($festival);
+        // Usamos el load para forzar el eager loading de los artistas
+        return FestivalResource::make($festival->load('artists'));
     }
 
     /**

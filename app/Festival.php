@@ -17,4 +17,9 @@ class Festival extends Model
     {
         return $this->belongsTo('App\User', 'promoter_id');
     }
+
+    public function artists()
+    {
+        return $this->belongsToMany('App\Artist')->withPivot('confirmed');
+    }
 }
