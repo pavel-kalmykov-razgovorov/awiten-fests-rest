@@ -17,13 +17,7 @@ class PhotoResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'festival' => [
-                'id' => $this->festival->id,
-                'name' => $this->festival->name,
-                'date' => $this->festival->date,
-                'province' => $this->festival->province,
-                'location' => $this->festival->location,
-            ]
+            'festival' => FestivalResource::make($this->whenLoaded('festival'))
         ];
     }
 }
