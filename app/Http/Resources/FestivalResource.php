@@ -21,7 +21,8 @@ class FestivalResource extends Resource
             'province' => $this->province,
             'location' => $this->location,
             'artists' => ArtistResource::collection($this->whenLoaded('artists')),
-            'genres' => GenreResource::collection($this->whenLoaded('genres'))
+            'genres' => GenreResource::collection($this->whenLoaded('genres')),
+            'photos' => PhotoResource::collection($this->whenLoaded('photos'))
         ];
     }
 }

@@ -27,4 +27,9 @@ class Festival extends Model
     {
         return $this->belongsToMany('App\Genre');
     }
+
+    public function photos()
+    {
+        return $this->hasMany('App\Photo');
+    }
 }

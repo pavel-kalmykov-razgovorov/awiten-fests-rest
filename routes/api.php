@@ -20,7 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
     'festivals' => 'FestivalController',
     'artists' => 'ArtistController',
-    'genres' => 'GenreController'
+    'genres' => 'GenreController',
+    'photos' => 'PhotoController'
 ]);
 
 // Nested resources => only list and details
@@ -37,5 +38,9 @@ Route::resource('genres.festivals', 'GenreFestivalsController', ['only' => [
 ]]);
 
 Route::resource('genres.artists', 'GenreArtistsController', ['only' => [
+    'index', 'show'
+]]);
+
+Route::resource('festivals.photos', 'FestivalPhotosController', ['only' => [
     'index', 'show'
 ]]);
