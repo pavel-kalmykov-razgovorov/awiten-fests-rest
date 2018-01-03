@@ -32,4 +32,9 @@ class Festival extends Model
     {
         return $this->hasMany('App\Photo');
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }

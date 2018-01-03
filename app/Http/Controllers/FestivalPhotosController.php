@@ -6,6 +6,7 @@ use App\Festival;
 use App\Photo;
 use App\Http\Resources\PhotoResource;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FestivalPhotosController extends Controller
 {
