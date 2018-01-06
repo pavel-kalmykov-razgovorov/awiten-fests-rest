@@ -21,6 +21,9 @@ class ArtistResource extends Resource
             'soundcloud' => $this->soundcloud,
             'website' => $this->website,
             'festivals' => FestivalResource::collection($this->whenLoaded('festivals')),
+            'confirmed' => $this->whenPivotLoaded('artist_festival', function () {
+                return $this->pivot->confirmed;
+            }),
             'genres' => GenreResource::collection($this->whenLoaded('genres'))
         ];
     }

@@ -21,6 +21,9 @@ class FestivalResource extends Resource
             'province' => $this->province,
             'location' => $this->location,
             'artists' => ArtistResource::collection($this->whenLoaded('artists')),
+            'confirmed' => $this->whenPivotLoaded('artist_festival', function () {
+                return $this->pivot->confirmed;
+            }),
             'genres' => GenreResource::collection($this->whenLoaded('genres')),
             'photos' => PhotoResource::collection($this->whenLoaded('photos')),
             'posts' => PostResource::collection($this->whenLoaded('posts'))
