@@ -1661,8 +1661,8 @@ namespace Illuminate\Support\Facades {
          *
          * @throws \Tymon\JWTAuth\Exceptions\UserNotDefinedException
          * @return \App\User 
-         * @static 
-         */
+         * @static
+         */ 
         public static function userOrFail()
         {
             return \Tymon\JWTAuth\JWTGuard::userOrFail();
@@ -1686,8 +1686,8 @@ namespace Illuminate\Support\Facades {
          * @param array $credentials
          * @param bool $login
          * @return bool|string 
-         * @static 
-         */
+         * @static
+         */ 
         public static function attempt($credentials = array(), $login = true)
         {
             return \Tymon\JWTAuth\JWTGuard::attempt($credentials, $login);
@@ -1698,8 +1698,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param \Tymon\JWTAuth\Contracts\JWTSubject $user
          * @return string 
-         * @static 
-         */
+         * @static
+         */ 
         public static function login($user)
         {
             return \Tymon\JWTAuth\JWTGuard::login($user);
@@ -1710,8 +1710,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param bool $forceForever
          * @return void 
-         * @static 
-         */
+         * @static
+         */ 
         public static function logout($forceForever = false)
         {
             \Tymon\JWTAuth\JWTGuard::logout($forceForever);
@@ -1723,8 +1723,8 @@ namespace Illuminate\Support\Facades {
          * @param bool $forceForever
          * @param bool $resetClaims
          * @return string 
-         * @static 
-         */
+         * @static
+         */ 
         public static function refresh($forceForever = false, $resetClaims = false)
         {
             return \Tymon\JWTAuth\JWTGuard::refresh($forceForever, $resetClaims);
@@ -1735,8 +1735,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param bool $forceForever
          * @return \Tymon\JWTAuth\JWT 
-         * @static 
-         */
+         * @static
+         */ 
         public static function invalidate($forceForever = false)
         {
             return \Tymon\JWTAuth\JWTGuard::invalidate($forceForever);
@@ -1747,8 +1747,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @return string|null 
-         * @static 
-         */
+         * @static
+         */ 
         public static function tokenById($id)
         {
             return \Tymon\JWTAuth\JWTGuard::tokenById($id);
@@ -1759,8 +1759,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param array $credentials
          * @return bool 
-         * @static 
-         */
+         * @static
+         */ 
         public static function once($credentials = array())
         {
             return \Tymon\JWTAuth\JWTGuard::once($credentials);
@@ -1771,8 +1771,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @return bool 
-         * @static 
-         */
+         * @static
+         */ 
         public static function onceUsingId($id)
         {
             return \Tymon\JWTAuth\JWTGuard::onceUsingId($id);
@@ -1783,8 +1783,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @return bool 
-         * @static 
-         */
+         * @static
+         */ 
         public static function byId($id)
         {
             return \Tymon\JWTAuth\JWTGuard::byId($id);
@@ -1795,8 +1795,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param array $claims
          * @return $this 
-         * @static 
-         */
+         * @static
+         */ 
         public static function claims($claims)
         {
             return \Tymon\JWTAuth\JWTGuard::claims($claims);
@@ -1806,8 +1806,8 @@ namespace Illuminate\Support\Facades {
          * Get the raw Payload instance.
          *
          * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */
+         * @static
+         */ 
         public static function getPayload()
         {
             return \Tymon\JWTAuth\JWTGuard::getPayload();
@@ -1817,8 +1817,8 @@ namespace Illuminate\Support\Facades {
          * Alias for getPayload().
          *
          * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */
+         * @static
+         */ 
         public static function payload()
         {
             return \Tymon\JWTAuth\JWTGuard::payload();
@@ -1830,7 +1830,7 @@ namespace Illuminate\Support\Facades {
          * @param \Tymon\JWTAuth\Token|string $token
          * @return $this
          * @static
-         */
+         */ 
         public static function setToken($token)
         {
             return \Tymon\JWTAuth\JWTGuard::setToken($token);
@@ -1841,8 +1841,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param int $ttl
          * @return $this 
-         * @static 
-         */
+         * @static
+         */ 
         public static function setTTL($ttl)
         {
             return \Tymon\JWTAuth\JWTGuard::setTTL($ttl);
@@ -1852,8 +1852,8 @@ namespace Illuminate\Support\Facades {
          * Get the user provider used by the guard.
          *
          * @return \Illuminate\Contracts\Auth\UserProvider 
-         * @static 
-         */
+         * @static
+         */ 
         public static function getProvider()
         {
             return \Tymon\JWTAuth\JWTGuard::getProvider();
@@ -1865,7 +1865,7 @@ namespace Illuminate\Support\Facades {
          * @param \Illuminate\Contracts\Auth\UserProvider $provider
          * @return $this
          * @static
-         */
+         */ 
         public static function setProvider($provider)
         {
             return \Tymon\JWTAuth\JWTGuard::setProvider($provider);
@@ -1910,7 +1910,7 @@ namespace Illuminate\Support\Facades {
          *
          * @return \App\User
          * @static
-         */
+         */ 
         public static function getLastAttempted()
         {
             return \Tymon\JWTAuth\JWTGuard::getLastAttempted();
@@ -1954,8 +1954,8 @@ namespace Illuminate\Support\Facades {
          * Get the ID for the currently authenticated user.
          *
          * @return int|null 
-         * @static 
-         */
+         * @static
+         */ 
         public static function id()
         {
             return \Tymon\JWTAuth\JWTGuard::id();
@@ -1966,8 +1966,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable $user
          * @return $this 
-         * @static 
-         */
+         * @static
+         */ 
         public static function setUser($user)
         {
             return \Tymon\JWTAuth\JWTGuard::setUser($user);
@@ -2126,7 +2126,7 @@ namespace Illuminate\Support\Facades {
          *
          * @return void
          * @static
-         */
+         */ 
         public static function doubleEncode()
         {
             \Illuminate\View\Compilers\BladeCompiler::doubleEncode();
@@ -11175,7 +11175,7 @@ namespace Illuminate\Support\Facades {
          *
          * @return array
          * @static
-         */
+         */ 
         public static function getDefaultParameters()
         {
             return \Illuminate\Routing\UrlGenerator::getDefaultParameters();
@@ -12237,14 +12237,14 @@ namespace Tymon\JWTAuth\Facades {
 
     class JWTAuth
     {
-
+        
         /**
          * Attempt to authenticate the user and return the token.
          *
          * @param array $credentials
          * @return false|string
          * @static
-         */
+         */ 
         public static function attempt($credentials)
         {
             return \Tymon\JWTAuth\JWTAuth::attempt($credentials);
@@ -12255,7 +12255,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Contracts\JWTSubject|false
          * @static
-         */
+         */ 
         public static function authenticate()
         {
             return \Tymon\JWTAuth\JWTAuth::authenticate();
@@ -12266,7 +12266,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Contracts\JWTSubject|false
          * @static
-         */
+         */ 
         public static function toUser()
         {
             return \Tymon\JWTAuth\JWTAuth::toUser();
@@ -12277,7 +12277,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Contracts\JWTSubject
          * @static
-         */
+         */ 
         public static function user()
         {
             return \Tymon\JWTAuth\JWTAuth::user();
@@ -12289,7 +12289,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
          * @return string
          * @static
-         */
+         */ 
         public static function fromSubject($subject)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12302,7 +12302,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param \Tymon\JWTAuth\Contracts\JWTSubject $user
          * @return string
          * @static
-         */
+         */ 
         public static function fromUser($user)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12316,7 +12316,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param bool $resetClaims
          * @return string
          * @static
-         */
+         */ 
         public static function refresh($forceForever = false, $resetClaims = false)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12329,7 +12329,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param bool $forceForever
          * @return $this
          * @static
-         */
+         */ 
         public static function invalidate($forceForever = false)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12343,7 +12343,7 @@ namespace Tymon\JWTAuth\Facades {
          * @throws \Tymon\JWTAuth\Exceptions\JWTException
          * @return \Tymon\JWTAuth\Payload
          * @static
-         */
+         */ 
         public static function checkOrFail()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12356,7 +12356,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param bool $getPayload
          * @return \Tymon\JWTAuth\Payload|bool
          * @static
-         */
+         */ 
         public static function check($getPayload = false)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12368,7 +12368,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Token|false
          * @static
-         */
+         */ 
         public static function getToken()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12381,7 +12381,7 @@ namespace Tymon\JWTAuth\Facades {
          * @throws \Tymon\JWTAuth\Exceptions\JWTException
          * @return $this
          * @static
-         */
+         */ 
         public static function parseToken()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12393,7 +12393,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Payload
          * @static
-         */
+         */ 
         public static function getPayload()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12405,7 +12405,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Payload
          * @static
-         */
+         */ 
         public static function payload()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12418,7 +12418,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param string $claim
          * @return mixed
          * @static
-         */
+         */ 
         public static function getClaim($claim)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12431,7 +12431,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
          * @return \Tymon\JWTAuth\Payload
          * @static
-         */
+         */ 
         public static function makePayload($subject)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12444,7 +12444,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param string|object $provider
          * @return bool
          * @static
-         */
+         */ 
         public static function checkProvider($provider)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12457,7 +12457,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param \Tymon\JWTAuth\Token|string $token
          * @return $this
          * @static
-         */
+         */ 
         public static function setToken($token)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12469,7 +12469,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return $this
          * @static
-         */
+         */ 
         public static function unsetToken()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12482,7 +12482,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param \Illuminate\Http\Request $request
          * @return $this
          * @static
-         */
+         */ 
         public static function setRequest($request)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12494,7 +12494,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Manager
          * @static
-         */
+         */ 
         public static function manager()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12506,7 +12506,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Http\Parser\Parser
          * @static
-         */
+         */ 
         public static function parser()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12518,7 +12518,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Factory
          * @static
-         */
+         */ 
         public static function factory()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12530,7 +12530,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Blacklist
          * @static
-         */
+         */ 
         public static function blacklist()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12543,7 +12543,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param array $customClaims
          * @return $this
          * @static
-         */
+         */ 
         public static function customClaims($customClaims)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12556,7 +12556,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param array $customClaims
          * @return $this
          * @static
-         */
+         */ 
         public static function claims($customClaims)
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12568,7 +12568,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return array
          * @static
-         */
+         */ 
         public static function getCustomClaims()
         {
             //Method inherited from \Tymon\JWTAuth\JWT            
@@ -12579,14 +12579,14 @@ namespace Tymon\JWTAuth\Facades {
 
     class JWTFactory
     {
-
+        
         /**
          * Create the Payload instance.
          *
          * @param bool $resetClaims
          * @return \Tymon\JWTAuth\Payload
          * @static
-         */
+         */ 
         public static function make($resetClaims = false)
         {
             return \Tymon\JWTAuth\Factory::make($resetClaims);
@@ -12597,7 +12597,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return $this
          * @static
-         */
+         */ 
         public static function emptyClaims()
         {
             return \Tymon\JWTAuth\Factory::emptyClaims();
@@ -12608,7 +12608,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Claims\Collection
          * @static
-         */
+         */ 
         public static function buildClaimsCollection()
         {
             return \Tymon\JWTAuth\Factory::buildClaimsCollection();
@@ -12620,7 +12620,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param \Tymon\JWTAuth\Claims\Collection $claims
          * @return \Tymon\JWTAuth\Payload
          * @static
-         */
+         */ 
         public static function withClaims($claims)
         {
             return \Tymon\JWTAuth\Factory::withClaims($claims);
@@ -12632,7 +12632,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param array $claims
          * @return $this
          * @static
-         */
+         */ 
         public static function setDefaultClaims($claims)
         {
             return \Tymon\JWTAuth\Factory::setDefaultClaims($claims);
@@ -12644,7 +12644,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param int $ttl
          * @return $this
          * @static
-         */
+         */ 
         public static function setTTL($ttl)
         {
             return \Tymon\JWTAuth\Factory::setTTL($ttl);
@@ -12655,7 +12655,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return int
          * @static
-         */
+         */ 
         public static function getTTL()
         {
             return \Tymon\JWTAuth\Factory::getTTL();
@@ -12666,7 +12666,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return array
          * @static
-         */
+         */ 
         public static function getDefaultClaims()
         {
             return \Tymon\JWTAuth\Factory::getDefaultClaims();
@@ -12677,7 +12677,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return \Tymon\JWTAuth\Validators\PayloadValidator
          * @static
-         */
+         */ 
         public static function validator()
         {
             return \Tymon\JWTAuth\Factory::validator();
@@ -12689,7 +12689,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param array $customClaims
          * @return $this
          * @static
-         */
+         */ 
         public static function customClaims($customClaims)
         {
             return \Tymon\JWTAuth\Factory::customClaims($customClaims);
@@ -12701,7 +12701,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param array $customClaims
          * @return $this
          * @static
-         */
+         */ 
         public static function claims($customClaims)
         {
             return \Tymon\JWTAuth\Factory::claims($customClaims);
@@ -12712,7 +12712,7 @@ namespace Tymon\JWTAuth\Facades {
          *
          * @return array
          * @static
-         */
+         */ 
         public static function getCustomClaims()
         {
             return \Tymon\JWTAuth\Factory::getCustomClaims();
@@ -12724,7 +12724,7 @@ namespace Tymon\JWTAuth\Facades {
          * @param bool $refreshFlow
          * @return $this
          * @static
-         */
+         */ 
         public static function setRefreshFlow($refreshFlow = true)
         {
             return \Tymon\JWTAuth\Factory::setRefreshFlow($refreshFlow);
