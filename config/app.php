@@ -181,6 +181,7 @@ return [
          * Custom providers
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ],
 
     /*
