@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Festival;
-use App\Photo;
 use App\Http\Resources\PhotoResource;
-use Illuminate\Http\Request;
+use App\Photo;
 use Illuminate\Http\Response;
 
 class FestivalPhotosController extends Controller
@@ -14,7 +13,7 @@ class FestivalPhotosController extends Controller
      * Display a listing of the resource.
      *
      * @param Festival $festival
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|Response
      */
     public function index(Festival $festival)
     {

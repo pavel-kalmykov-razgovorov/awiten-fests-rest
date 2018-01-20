@@ -47,4 +47,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function festivals()
+    {
+        return $this->role === 'promoter' ? $this->hasMany('App\Festival', 'promoter_id') : null;
+    }
+
+    public function artists()
+    {
+        return $this->role === 'manager' ? $this->hasMany('App\Artist', 'manager_id') : null;
+    }
 }

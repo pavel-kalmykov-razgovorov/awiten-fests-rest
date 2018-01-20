@@ -4,20 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Festival;
 use App\Http\Resources\FestivalResource;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class FestivalController extends Controller
 {
+    const PERMISSION_ERROR = 'You are not the promoter of this festival';
+
+    /**
+     * Create a new FestivalController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth:api', 'auth.promoter:api'], ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return FestivalResource::collection(Festival::all());
+        $user = Auth::user();
+        if ($user && $user->role === "promoter" && $request->has('only_mine')) {
+            return FestivalResource::collection(Festival::wherePromoterId($user->id)->get());
+        } else return FestivalResource::collection(Festival::all());
     }
 
     /**
@@ -30,8 +46,8 @@ class FestivalController extends Controller
     {
         // Metemos en la petición nuevos datos a calzador que generamos nosotros mismos de forma automática
         $request->merge([
-            'permalink' => kebab_case($request['name']),
-            'promoter_id' => User::whereRole('promoter')->first()->id // FIXME Obtener desde el Auth el ID del promotor
+            'permalink' => kebab_case($request->name),
+            'promoter_id' => Auth::user()->id // El middleware se asegura de que tenga rol "promoter"
         ]);
 
         $validatedData = $request->validate([
@@ -53,7 +69,7 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival)
     {
-        // Usamos el load para forzar el eager loading de los artistas
+        // Usamos el load para forzar el eager loading
         return FestivalResource::make($festival->load(['artists', 'genres', 'photos', 'posts']));
     }
 
@@ -66,9 +82,13 @@ class FestivalController extends Controller
      */
     public function update(Request $request, Festival $festival)
     {
+        if (!$this->userOwns($festival)) {
+            return response()->json(['message' => self::PERMISSION_ERROR], Response::HTTP_UNAUTHORIZED);
+        }
+
         // Metemos en la petición nuevos datos a calzador que generamos nosotros mismos de forma automática
         $request->merge([
-            'permalink' => kebab_case($request['name']),
+            'permalink' => kebab_case($request->name),
         ]);
         // Decidimos si tenemos que buscar si existe el nuevo permalink o no
         // en función de si este ha cambiado respecto al original
@@ -92,11 +112,24 @@ class FestivalController extends Controller
      */
     public function destroy(Festival $festival)
     {
+        if (!$this->userOwns($festival)) {
+            return response()->json(['message' => self::PERMISSION_ERROR], Response::HTTP_UNAUTHORIZED);
+        }
+
         try {
             $festival->delete();
             return response(null, Response::HTTP_NO_CONTENT);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * @param Festival $festival
+     * @return bool
+     */
+    private function userOwns(Festival $festival): bool
+    {
+        return Auth::user()->id === $festival->promoter_id;
     }
 }

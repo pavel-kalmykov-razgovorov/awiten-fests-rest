@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Festival;
-use App\Post;
 use App\Http\Resources\PostResource;
-use Illuminate\Http\Request;
+use App\Post;
 use Illuminate\Http\Response;
 
 
@@ -15,7 +14,7 @@ class FestivalPostsController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\Festival  $festival
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|Response
      */
     public function index(Festival $festival)
     {
