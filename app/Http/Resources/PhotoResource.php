@@ -17,6 +17,7 @@ class PhotoResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'url' => route('images.photo_image', ['id' => $this->id]),
             'festival' => FestivalResource::make($this->whenLoaded('festival'))
         ];
     }

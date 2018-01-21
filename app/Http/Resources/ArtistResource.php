@@ -20,6 +20,8 @@ class ArtistResource extends Resource
             'country' => $this->country,
             'soundcloud' => $this->soundcloud,
             'website' => $this->website,
+            'profileUrl' => route('images.artist_profile', ['id' => $this->id]),
+            'headerUrl' => route('images.artist_header', ['id' => $this->id]),
             'festivals' => FestivalResource::collection($this->whenLoaded('festivals')),
             'confirmed' => $this->whenPivotLoaded('artist_festival', function () {
                 return $this->pivot->confirmed;

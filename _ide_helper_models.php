@@ -49,16 +49,16 @@ namespace App {
      *
      * @property int $id
      * @property string $name
-     * @property string $permalink
+     * @property string $filename
      * @property int $festival_id
      * @property \Carbon\Carbon|null $created_at
      * @property \Carbon\Carbon|null $updated_at
      * @property-read \App\Festival $festival
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereFestivalId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereFilename($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo wherePermalink($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereUpdatedAt($value)
      */
     class Photo extends \Eloquent

@@ -20,6 +20,7 @@ class FestivalResource extends Resource
             'date' => $this->date,
             'province' => $this->province,
             'location' => $this->location,
+            'logoUrl' => route('images.festival_logo', ['id' => $this->id]),
             'artists' => ArtistResource::collection($this->whenLoaded('artists')),
             'confirmed' => $this->whenPivotLoaded('artist_festival', function () {
                 return $this->pivot->confirmed;
