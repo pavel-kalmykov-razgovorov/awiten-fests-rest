@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -118,6 +119,6 @@ class PostsTableSeeder extends Seeder
             ]
         );
 
-        // factory(Post::class, 300)->create();
+        factory(Post::class, 300)->create();
     }
 }

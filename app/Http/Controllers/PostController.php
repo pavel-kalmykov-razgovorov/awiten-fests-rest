@@ -32,12 +32,13 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        $perPage = intval($request->size);
         if ($user && $user->role === "promoter" && $request->has('only_mine')) {
             $getFestivalsIds = function (Festival $festival) {
                 return $festival->id;
             };
-            return PostResource::collection(Post::whereIn('festival_id', $user->festivals->map($getFestivalsIds))->get());
-        } else return PostResource::collection(Post::all());
+            return PostResource::collection(Post::whereIn('festival_id', $user->festivals->map($getFestivalsIds))->paginate($perPage));
+        } else return PostResource::collection(Post::paginate($perPage));
     }
 
     /**

@@ -31,9 +31,10 @@ class ArtistController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        $perPage = intval($request->size);
         if ($user && $user->role === "promoter" && $request->has('only_mine')) {
-            return ArtistResource::collection(Artist::whereManagerId($user->id)->get());
-        } else return ArtistResource::collection(Artist::all());
+            return ArtistResource::collection(Artist::whereManagerId($user->id)->paginate($perPage));
+        } else return ArtistResource::collection(Artist::paginate($perPage));
     }
 
     /**

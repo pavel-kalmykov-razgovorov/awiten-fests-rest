@@ -31,9 +31,10 @@ class FestivalController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        $perPage = intval($request->size);
         if ($user && $user->role === "promoter" && $request->has('only_mine')) {
-            return FestivalResource::collection(Festival::wherePromoterId($user->id)->get());
-        } else return FestivalResource::collection(Festival::all());
+            return FestivalResource::collection(Festival::wherePromoterId($user->id)->paginate($perPage));
+        } else return FestivalResource::collection(Festival::paginate($perPage));
     }
 
     /**

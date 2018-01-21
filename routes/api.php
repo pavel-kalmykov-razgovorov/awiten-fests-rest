@@ -72,6 +72,11 @@ Route::get('/artists/{artist}/header', [
     'as' => 'images.artist_header'
 ]);
 
+Route::get('/festivals/{festival}/logo', [
+    'uses' => 'ImagesController@getLogoImage',
+    'as' => 'images.festival_logo'
+]);
+
 Route::get('/photos/{photo}/image', [
     'uses' => 'ImagesController@getFestivalPhoto',
     'as' => 'images.photo_image'
