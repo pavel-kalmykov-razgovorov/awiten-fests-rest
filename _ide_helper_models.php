@@ -10,23 +10,107 @@
 
 namespace App {
     /**
+     * App\Artist
+     *
+     * @property int $id
+     * @property string $permalink
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @property string $name
+     * @property string|null $country
+     * @property string|null $soundcloud
+     * @property string|null $website
+     * @property string|null $pathProfile
+     * @property string|null $pathHeader
+     * @property int $manager_id
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Festival[] $festivals
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Genre[] $genres
+     * @property-read \App\User $manager
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCountry($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereManagerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist wherePathHeader($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist wherePathProfile($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist wherePermalink($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereSoundcloud($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereWebsite($value)
+     */
+    class Artist extends \Eloquent
+    {
+    }
+}
+
+namespace App {
+    /**
      * App\Photo
      *
      * @property int $id
      * @property string $name
-     * @property string $permalink
+     * @property string $filename
      * @property int $festival_id
      * @property \Carbon\Carbon|null $created_at
      * @property \Carbon\Carbon|null $updated_at
      * @property-read \App\Festival $festival
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereFestivalId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereFilename($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo wherePermalink($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Photo whereUpdatedAt($value)
      */
     class Photo extends \Eloquent
+    {
+    }
+}
+
+namespace App {
+    /**
+     * App\Genre
+     *
+     * @property int $id
+     * @property string $permalink
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @property string $name
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Artist[] $artists
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Festival[] $festivals
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre wherePermalink($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereUpdatedAt($value)
+     */
+    class Genre extends \Eloquent
+    {
+    }
+}
+
+namespace App {
+    /**
+     * App\Post
+     *
+     * @property int $id
+     * @property string $title
+     * @property string $lead
+     * @property string $body
+     * @property string $permalink
+     * @property int $festival_id
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @property-read \App\Festival $festival
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereBody($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereFestivalId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereLead($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePermalink($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereTitle($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
+     */
+    class Post extends \Eloquent
     {
     }
 }
@@ -70,68 +154,6 @@ namespace App {
 
 namespace App {
     /**
-     * App\Artist
-     *
-     * @property int $id
-     * @property string $permalink
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @property string $name
-     * @property string|null $country
-     * @property string|null $soundcloud
-     * @property string|null $website
-     * @property string|null $pathProfile
-     * @property string|null $pathHeader
-     * @property int $manager_id
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Festival[] $festivals
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Genre[] $genres
-     * @property-read \App\User $manager
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCountry($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereManagerId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist wherePathHeader($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist wherePathProfile($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist wherePermalink($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereSoundcloud($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Artist whereWebsite($value)
-     */
-    class Artist extends \Eloquent
-    {
-    }
-}
-
-namespace App {
-    /**
-     * App\Post
-     *
-     * @property int $id
-     * @property string $title
-     * @property string $lead
-     * @property string $body
-     * @property string $permalink
-     * @property int $festival_id
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @property-read \App\Festival $festival
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereBody($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereFestivalId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereLead($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePermalink($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereTitle($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
-     */
-    class Post extends \Eloquent
-    {
-    }
-}
-
-namespace App {
-    /**
      * App\User
      *
      * @property int $id
@@ -161,28 +183,6 @@ namespace App {
      * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUsername($value)
      */
     class User extends \Eloquent
-    {
-    }
-}
-
-namespace App {
-    /**
-     * App\Genre
-     *
-     * @property int $id
-     * @property string $permalink
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @property string $name
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Artist[] $artists
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Festival[] $festivals
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre wherePermalink($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereUpdatedAt($value)
-     */
-    class Genre extends \Eloquent
     {
     }
 }

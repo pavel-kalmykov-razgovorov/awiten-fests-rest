@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -92,6 +92,18 @@ return [
     */
 
     'fallback_locale' => 'en',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Faker Locale
+    |--------------------------------------------------------------------------
+    |
+    | The faker locale determines the locale to use with the Faker
+    | generator. You may change the value to correspond to any of
+    | the language folders that are provided through your application.
+    |
+    */
+    'faker_locale' => 'es_ES',
 
     /*
     |--------------------------------------------------------------------------

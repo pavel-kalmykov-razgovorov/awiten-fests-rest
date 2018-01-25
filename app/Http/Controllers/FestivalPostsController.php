@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Festival;
-use App\Post;
 use App\Http\Resources\PostResource;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -14,12 +14,13 @@ class FestivalPostsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Festival  $festival
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param  \App\Festival $festival
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|Response
      */
-    public function index(Festival $festival)
+    public function index(Request $request, Festival $festival)
     {
-        return PostResource::collection($festival->posts);
+        return PostResource::collection($festival->posts()->paginate(intval($request->size)));
     }
 
     /**

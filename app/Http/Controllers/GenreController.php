@@ -10,6 +10,16 @@ use Illuminate\Http\Response;
 class GenreController extends Controller
 {
     /**
+     * Create a new GenreController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth:api', 'auth.admin:api'], ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\Response
@@ -29,7 +39,7 @@ class GenreController extends Controller
     {
         // Metemos en la petición nuevos datos a calzador que generamos nosotros mismos de forma automática
         $request->merge([
-            'permalink' => kebab_case($request['name'])
+            'permalink' => kebab_case($request->name)
         ]);
 
         $validatedData = $request->validate([
@@ -61,7 +71,7 @@ class GenreController extends Controller
     {
         // Metemos en la petición nuevos datos a calzador que generamos nosotros mismos de forma automática
         $request->merge([
-            'permalink' => kebab_case($request['name'])
+            'permalink' => kebab_case($request->name)
         ]);
 
         // Decidimos si tenemos que buscar si existe el nuevo permalink o no

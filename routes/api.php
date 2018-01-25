@@ -60,3 +60,24 @@ Route::resource('festivals.photos', 'FestivalPhotosController', ['only' => [
 Route::resource('festivals.posts', 'FestivalPostsController', ['only' => [
     'index', 'show'
 ]]);
+
+// Multimedia (Images)
+Route::get('/artists/{artist}/profile', [
+    'uses' => 'ImagesController@getProfileImage',
+    'as' => 'images.artist_profile'
+]);
+
+Route::get('/artists/{artist}/header', [
+    'uses' => 'ImagesController@getHeaderImage',
+    'as' => 'images.artist_header'
+]);
+
+Route::get('/festivals/{festival}/logo', [
+    'uses' => 'ImagesController@getLogoImage',
+    'as' => 'images.festival_logo'
+]);
+
+Route::get('/photos/{photo}/image', [
+    'uses' => 'ImagesController@getFestivalPhoto',
+    'as' => 'images.photo_image'
+]);
