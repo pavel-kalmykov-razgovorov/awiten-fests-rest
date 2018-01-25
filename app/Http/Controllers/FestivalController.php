@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Festival;
 use App\Http\Resources\FestivalResource;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FestivalController extends Controller
 {
@@ -32,9 +34,23 @@ class FestivalController extends Controller
     {
         $user = Auth::user();
         $perPage = intval($request->size);
+        $genres = $this->collectGenresFromRequest($request);
+        $queryBuilder = Festival::query();
+        if ($request->name) {
+            $queryBuilder->where('name', 'like', "%$request->name%");
+        }
+        if ($request->order) {
+            $queryBuilder->orderBy('name', $request->order);
+        }
+        if ($genres) {
+            $queryBuilder->join('festival_genre', "festival_genre.festival_id", "=", "id")
+                ->whereIn('genre_id', $genres)
+                ->groupBy("id");
+        }
         if ($user && $user->role === "promoter" && $request->has('only_mine')) {
-            return FestivalResource::collection(Festival::wherePromoterId($user->id)->paginate($perPage));
-        } else return FestivalResource::collection(Festival::paginate($perPage));
+            $queryBuilder->where('promoter_id', '=', $user->id);
+        }
+        return FestivalResource::collection($queryBuilder->paginate($perPage));
     }
 
     /**
@@ -59,7 +75,11 @@ class FestivalController extends Controller
             'province' => 'nullable|string',
             'location' => 'nullable|string',
         ]);
-        return FestivalResource::make(Festival::create($validatedData));
+        $festival = Festival::create($validatedData);
+        if ($request->artists) $festival->artists()->sync($request->artists);
+        if ($request->genres) $festival->genres()->sync($request->genres);
+        Storage::makeDirectory("/festivals/$festival->permalink");
+        return FestivalResource::make($festival);
     }
 
     /**
@@ -101,7 +121,11 @@ class FestivalController extends Controller
             'province' => 'nullable|string',
             'location' => 'nullable|string',
         ]);
+        $oldPermalink = $festival->permalink;
         $festival->update($validatedData);
+        if ($request->artists) $festival->artists()->sync($request->artists);
+        if ($request->genres) $festival->genres()->sync($request->genres);
+        Storage::move("festivals/$oldPermalink", "festivals/$festival->permalink");
         return FestivalResource::make($festival)->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -118,7 +142,9 @@ class FestivalController extends Controller
         }
 
         try {
+            $permalink = $festival->permalink;
             $festival->delete();
+            Storage::deleteDirectory("/festivals/$permalink");
             return response(null, Response::HTTP_NO_CONTENT);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -131,6 +157,24 @@ class FestivalController extends Controller
      */
     private function userOwns(Festival $festival): bool
     {
-        return Auth::user()->id === $festival->promoter_id;
+        return Auth::user()->id == $festival->promoter_id;
+    }
+
+    /**
+     * @param Request $request
+     * @return null|static
+     */
+    private function collectGenresFromRequest(Request $request)
+    {
+        $genres = $request->genres
+            ? collect(explode(",", $request->genres))
+                ->map(function ($genre) {
+                    return intval($genre); // cast genre to int
+                })
+                ->filter(function ($genre) {
+                    return $genre > 0; // filter non-existent genre's and parse error's
+                })
+            : null;
+        return $genres;
     }
 }

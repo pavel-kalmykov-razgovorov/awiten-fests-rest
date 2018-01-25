@@ -7,6 +7,7 @@ use App\Http\Resources\ArtistResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArtistController extends Controller
 {
@@ -32,9 +33,23 @@ class ArtistController extends Controller
     {
         $user = Auth::user();
         $perPage = intval($request->size);
-        if ($user && $user->role === "promoter" && $request->has('only_mine')) {
-            return ArtistResource::collection(Artist::whereManagerId($user->id)->paginate($perPage));
-        } else return ArtistResource::collection(Artist::paginate($perPage));
+        $genres = $this->collectGenresFromRequest($request);
+        $queryBuilder = Artist::query();
+        if ($request->name) {
+            $queryBuilder->where('name', 'like', "%$request->name%");
+        }
+        if ($request->order) {
+            $queryBuilder->orderBy('name', $request->order);
+        }
+        if ($genres) {
+            $queryBuilder->join('artist_genre', "artist_genre.artist_id", "=", "id")
+                ->whereIn('genre_id', $genres)
+                ->groupBy("id");
+        }
+        if ($user && $user->role === "manager" && $request->has('only_mine')) {
+            $queryBuilder->where('manager_id', '=', $user->id);
+        }
+        return ArtistResource::collection($queryBuilder->paginate($perPage));
     }
 
     /**
@@ -60,7 +75,11 @@ class ArtistController extends Controller
             'website' => 'nullable|string',
         ]);
 
-        return ArtistResource::make(Artist::create($validatedData));
+        $artist = Artist::create($validatedData);
+        if ($request->festivals) $artist->festivals()->sync($request->festivals);
+        if ($request->genres) $artist->genres()->sync($request->genres);
+        Storage::makeDirectory("/artists/$artist->permalink");
+        return ArtistResource::make($artist);
     }
 
     /**
@@ -102,7 +121,11 @@ class ArtistController extends Controller
             'soundcloud' => 'nullable|string',
             'website' => 'nullable|string',
         ]);
+        $oldPermalink = $artist->permalink;
         $artist->update($validatedData);
+        if ($request->festivals) $artist->festivals()->sync($request->festivals);
+        if ($request->genres) $artist->genres()->sync($request->genres);
+        Storage::move("/artists/$oldPermalink", "/artists/$artist->permalink");
         return ArtistResource::make($artist)->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -119,7 +142,9 @@ class ArtistController extends Controller
         }
 
         try {
+            $permalink = $artist->permalink;
             $artist->delete();
+            Storage::deleteDirectory("/artists/$permalink");
             return response(null, Response::HTTP_NO_CONTENT);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -132,6 +157,24 @@ class ArtistController extends Controller
      */
     private function userOwns(Artist $artist): bool
     {
-        return Auth::user()->id === $artist->manager_id;
+        return Auth::user()->id == $artist->manager_id;
+    }
+
+    /**
+     * @param Request $request
+     * @return null|static
+     */
+    private function collectGenresFromRequest(Request $request)
+    {
+        $genres = $request->genres
+            ? collect(explode(",", $request->genres))
+                ->map(function ($genre) {
+                    return intval($genre); // cast genre to int
+                })
+                ->filter(function ($genre) {
+                    return $genre > 0; // filter non-existent genre's and parse error's
+                })
+            : null;
+        return $genres;
     }
 }
