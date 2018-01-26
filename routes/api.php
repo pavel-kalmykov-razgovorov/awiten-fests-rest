@@ -29,6 +29,7 @@ Route::group([
 });
 
 Route::apiResources([
+    'users' => 'UserController',
     'festivals' => 'FestivalController',
     'artists' => 'ArtistController',
     'genres' => 'GenreController',
